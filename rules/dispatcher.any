@@ -34,7 +34,7 @@
         {
         # Hostname or IP of the render
         #/hostname publisher
-        /hostname dispatcherreverse1_site1_1
+        /hostname dispatcherreverse2_site1_1
         # Port of the render
         #/port "4503"
         /port "80"

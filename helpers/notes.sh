@@ -1,4 +1,3 @@
-
 docker exec -it dispatcherreverse1_proxy_1 /bin/bash
 docker exec -it dispatcherreverse1_reverseproxy_1 /bin/bash
 docker exec -it dispatcher /bin/bash
@@ -6,10 +5,14 @@ docker exec -it dispatcher /bin/bash
 dispatcherreverse1_proxy
 
 docker run -it -p 80:80 --network=dispatcherreverse1_web --entrypoint=/bin/bash dispatcherreverse1_dispatcher -i
+docker run -it -p 80:80 --network=dispatcherreverse2_web --entrypoint=/bin/bash dispatcherreverse2_dispatcher -i
+
 docker run -it -p 80:80 --network=dispatcherreverse1_web dispatcherreverse1_dispatcher 
 
 docker run -it -p 80:80 --entrypoint=/bin/bash dispatcherreverse1_proxy -i
 docker run -it -p 80:80 --entrypoint=/bin/bash dispatcher -i
+
+docker run -it dispatcherreverse2_site1 bash
 
 /usr/sbin/httpd
 netstat -plnt
@@ -42,7 +45,9 @@ docker run --name mynginx1 -P -d nginx
 
 docker run --name mynginx1 -v /tmp/perezpardojc/dispatcher-reverse-1/site1:/usr/share/nginx/html:ro -p 81:80 -P -d nginx
 docker run --name mynginx2 -v /tmp/perezpardojc/dispatcher-reverse-1/site2:/usr/share/nginx/html:ro -p 82:80 -P -d nginx
+
 docker run -itd --name docker-nginx -p 4503:80 nginx
+
 
 dispatcherreverse1_apache_1
 dispatcherreverse1_nginx_1
@@ -55,3 +60,4 @@ docker network connect dispatcherreverse1_web upbeat_yonath
 
 ping dispatcherreverse1_site2_1
 ping dispatcherreverse1_site1_1
+
